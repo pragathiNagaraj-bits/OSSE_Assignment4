@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/Footer';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import WeatherDetails from '../../components/WeatherDetails/WeatherDetails';
 import Preview from '../../components/Preview/Preview';
+import ErrorNotice from '../../components/ErrorNotice/ErrorNotice';
 
 
 class App extends Component {
@@ -43,7 +44,7 @@ class App extends Component {
   // Fetch weather information and update state
   setWeather = () => {
     const city = this.state.searchBarInput;
-    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+    const API_KEY = c003fb6e9efbbf13ad7f75d619ff8e05;
     const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
     const URL = API_URL + `?q=${city}&appid=${API_KEY}&units=metric`;
     this.setState({
@@ -59,6 +60,7 @@ class App extends Component {
           if(data.cod === 200) {
             this.setState({
               weatherDetails: {
+                temperature: data.main.temp,
                 description: data.weather[0].main
               },
               loading: false
